@@ -1,0 +1,25 @@
+[DEFAULT]
+# Ban hosts for one hour:
+bantime = 3600
+
+# Max retries to auth before banning:
+maxretry = 3
+
+#Override /etc/fail2ban/jail.d/00-firewalld.conf:
+banaction = iptables-multiport
+
+destemail = herp@derp.com
+sender = herp@derp.com
+action = %(action_mw)s
+
+[sshd]
+enabled = true
+
+[sb-signin]
+enabled = true
+port = 21025
+protocol = tcp
+filter = sb-signin
+logpath = /home/sb/sb/storage/sb_f2b.log
+maxretry = 10
+action = %(action_mw)s
